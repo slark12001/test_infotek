@@ -3,6 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\base\InvalidConfigException;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "book".
@@ -22,15 +25,22 @@ class Book extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'book';
+    }
+
+    public function behaviors(): array
+    {
+        return [
+            TimestampBehavior::class
+        ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['title', 'year', 'isbn'], 'required'],
@@ -44,7 +54,7 @@ class Book extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
@@ -60,8 +70,9 @@ class Book extends \yii\db\ActiveRecord
      * Gets query for [[Authors]].
      *
      * @return \yii\db\ActiveQuery
+     * @throws InvalidConfigException
      */
-    public function getAuthors()
+    public function getAuthors(): \yii\db\ActiveQuery
     {
         return $this->hasMany(Author::class, ['id' => 'author_id'])->viaTable('book_author', ['book_id' => 'id']);
     }
@@ -71,7 +82,7 @@ class Book extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getBookAuthors()
+    public function getBookAuthors(): ActiveQuery
     {
         return $this->hasMany(BookAuthor::class, ['book_id' => 'id']);
     }

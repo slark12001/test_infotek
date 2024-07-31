@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 /**
@@ -17,11 +18,19 @@ class Author extends ActiveRecord
         return '{{%author}}';
     }
 
+    public function behaviors(): array
+    {
+        return [
+          TimestampBehavior::class
+        ];
+    }
+
     public function rules(): array
     {
         return [
             [['first_name', 'last_name', 'surname'], 'string', 'max' => 255],
-            [['first_name', 'last_name', 'surname'], 'trim']
+            [['first_name', 'last_name', 'surname'], 'trim'],
+            [['first_name', 'last_name'], 'required'],
         ];
     }
 

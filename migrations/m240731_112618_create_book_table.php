@@ -19,6 +19,8 @@ class m240731_112618_create_book_table extends Migration
             'description' => $this->text(),
             'isbn' => $this->string(13)->notNull(),
             'main_photo' => $this->string(),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
         ]);
     }
 

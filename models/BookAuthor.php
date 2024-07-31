@@ -18,7 +18,7 @@ class BookAuthor extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'book_author';
     }
@@ -40,7 +40,7 @@ class BookAuthor extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'book_id' => 'Book ID',

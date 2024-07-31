@@ -16,7 +16,9 @@ class m240731_112018_create_author_table extends Migration
             'id' => $this->primaryKey(),
             'first_name' => $this->string(255)->notNull(),
             'surname' => $this->string(255),
-            'last_name' => $this->string(255)->notNull()
+            'last_name' => $this->string(255)->notNull(),
+            'created_at' => $this->integer()->notNull(),
+            'updated_at' => $this->integer()->notNull(),
         ]);
     }
 
